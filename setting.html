@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+      <link rel="icon" type="image/png" href="https://codehs.com/uploads/896b82ac9696f0d852347ce7efd7a40f" />
+  <link rel="stylesheet" href="styles.css">
+  <style>
+ 
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            width: 250px;
+            cursor: pointer;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Setting</h1>
+    <div class="setting-option">
+    <select id="faviconSelector">
+        <option value="">Choose Icon</option>
+        <option value="https://saiyide-13441314.codehs.me/index.html">Canvas</option>
+        <option value="https://saiyide-3-14054556.codehs.me/">Google</option>
+        <option value="">Google Classroom</option>
+        <option value="https://saiyide-4-14058644.codehs.me/index.html">Portal</option>
+
+
+    </select>
+<!-- <script type="text/javascript" color="255, 250, 250" opacity='1.0' zIndex="-2" count="300" src="canva.js"></script> -->    <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+    
+    <script>
+        const faviconSelector = document.getElementById('faviconSelector');
+
+        faviconSelector.addEventListener('change', function () {
+            const faviconSelector = this.value;
+            if (faviconSelector) {
+                window.location.href = faviconSelector;
+            }
+        });
+    </script>
+    <a href="Home.html" class="button">Back</a>
+  </div>
+</body>
+
+</html>

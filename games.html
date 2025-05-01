@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+      <link rel="icon" type="image/png" href="https://codehs.com/uploads/896b82ac9696f0d852347ce7efd7a40f" />
+  <link rel="stylesheet" href="styles.css">
+          <!--gfonts api-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+        <style>
+            h3 {
+                font-family: "Press Start 2P", serif;
+                text-shadow: 0 0 3px #333, 0 0 5px #fff;
+            }
+
+
+        </style>
+</head>
+
+<body>
+<!-- <script type="text/javascript" color="255, 250, 250" opacity='1.0' zIndex="-2" count="300" src="canva.js"></script> -->    <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+    <canvas id="canvas"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speed = Math.random() * 6 + 6;
+                this.alpha = Math.random();
+            }
+
+            update() {
+                this.y += this.speed;
+                if (this.y > canvas.height) {
+                    this.y = Math.random() * -canvas.height;
+                    this.x = Math.random() * canvas.width;
+                    this.alpha = Math.random();
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = 'white';
+                ctx.fill();
+            }
+        }
+
+        const particles = [];
+        const numParticles = 200;
+
+        for (let i = 0; i < numParticles; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+  <div class="container">
+    <h1>Games</h1>
+    <p>Games</p>
+        <a href="Home.html" class="button">Back</a>      
+
+        <div class="site-links">
+      <a href="https://impostor.fan" class="site-link">Among Us</a>
+      <a href="https://www.kfchess.com" class="site-link">Chess</a>
+      <a href="https://motox3m.s3.amazonaws.com/file/index.html" class="site-link">Moto X3M</a>
+      <a href="https://codehs.com/uploads/5b75596539b7d02de02115c4ad799e85" class="site-link">Minecraft</a>
+      <a href="arcade/pmemerald" class="site-link">Pokemon Emerald</a>
+      <a href="arcade/pmfirered" class="site-link">Pokemon Fire Red</a>
+      <a href="arcade/qwop" class="site-link">QWOP</a>
+      <a href="arcade/PVZ" class="site-link">PVZ</a>
+      <a href="arcade/fbwg" class="site-link">Fireboy and Watergirl</a>
+      <a href="arcade/gunspin" class="site-link">Gunspin</a>
+      <a href="arcade/snowrider" class="site-link">Snowrider</a>
+      <a href="arcade/cookie" class="site-link">Cookie Clicker</a>
+      <a href="arcade/driftboss" class="site-link">Driftboss</a>
+      <a href="arcade/polytrack" class="site-link">Polytrack</a> 
+      <a href="arcade/tombofthemask" class="site-link">tombofthemask</a>
+      <a href="arcade/timeshooter" class="site-link">Timeshooter</a> 
+      <a href="arcade/Tetris" class="site-link">Tetris</a> 
+      <a href="arcade/BasketballLegends" class="site-link">BasketballLegends</a> 
+      <a href="arcade/PUBG" class="site-link">pixelbattlegrounds.io</a> 
+      <a href="arcade/1v1" class="site-link">1v1.lol</a> 
+      <a href="arcade/portal" class="site-link">portal</a>
+      <a href="arcade/run3" class="site-link">run3</a> 
+      <a href="arcade/Slope" class="site-link">Slope</a> 
+      <a href="arcade/granny" class="site-link">granny2</a> 
+      <a href="arcade/skibidi.io.html" class="site-link">skibidi toilet.io</a> 
+      <a href="arcade/polytrack2" class="site-link">Polytrack(new)</a> 
+
+    </div>
+
+    </div></div>
+    <br><br>
+    </div></div></div>
+    <script>
+    
+    </script>
+  </div>
+</body>
+
+</html>

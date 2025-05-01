@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <link rel="icon" type="image/png" href="https://codehs.com/uploads/896b82ac9696f0d852347ce7efd7a40f" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+    <div class="container">
+        <h1>1</h1>
+        <h2>Welcome！</h2>
+        <div id="battery-info">Getting the battery info...</div>
+        <div class="button-container">
+            <a href="sites.html" class="button">Sites</a>
+            <a href="games.html" class="button">Games</a>
+            <a href="chatbot.html" class="button">Chatbot</a>
+            <a href='chat.html' class='button'>Chat Room</a>
+            <a href="about_me.html" class="button">About Me</a>
+            <a href="setting.html" class="button">Setting</a>
+        </div>
+    </div>
+<!-- <script type="text/javascript" color="255, 250, 250" opacity='1.0' zIndex="-2" count="300" src="canva.js"></script> -->    <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+    <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cm98keh440013xmeushhvggad'></zapier-interfaces-chatbot-embed>
+    <script>
+        if ('getBattery' in navigator) {
+            navigator.getBattery().then(function (battery) {
+                function updateBatteryStatus() {
+                    const batteryLevel = Math.round(battery.level * 100);
+                    const batteryInfo = document.getElementById('battery-info');
+                    let message = `Remaining Battery: ${batteryLevel}%`;
+                    if (battery.charging) {
+                        message += ', Charging';
+                    }
+                    if (batteryLevel < 20) {
+                        message += '. Remember to charge your device.';
+                    }
+                    batteryInfo.textContent = message;
+                }
+                updateBatteryStatus();
+                battery.addEventListener('levelchange', updateBatteryStatus);
+                battery.addEventListener('chargingchange', updateBatteryStatus);
+            }).catch(function (error) {
+                const batteryInfo = document.getElementById('battery-info');
+                batteryInfo.textContent = `Failed to get battery information: ${error.message}`;
+            });
+        } else {
+            const batteryInfo = document.getElementById('battery-info');
+            batteryInfo.textContent = 'This browser does not support the battery information API';
+        }
+    </script>
+    <canvas id="canvas"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speed = Math.random() * 6 + 6;
+                this.alpha = Math.random();
+            }
+
+            update() {
+                this.y += this.speed;
+                if (this.y > canvas.height) {
+                    this.y = Math.random() * -canvas.height;
+                    this.x = Math.random() * canvas.width;
+                    this.alpha = Math.random();
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = 'white';
+                ctx.fill();
+            }
+        }
+
+        const particles = [];
+        const numParticles = 200;
+
+        for (let i = 0; i < numParticles; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+
+</html>
